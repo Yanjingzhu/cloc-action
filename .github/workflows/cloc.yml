@@ -22,10 +22,10 @@ jobs:
 
     # Runs djdefi/cloc-action@master
     - name: Count Lines of Code (cloc)
+      id: sum_line
       uses: Yanjingzhu/cloc-action@master
     
-    - name: Upload cloc output as a build artifact
-      uses: actions/upload-artifact@v1
-      with:
-        name: cloc
-        path: cloc.txt
+    - name: output log
+      run: echo $lines
+      env: 
+        lines: ${{steps.sum_line.outputs.lines }}
